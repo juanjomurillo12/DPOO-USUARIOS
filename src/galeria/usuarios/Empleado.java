@@ -1,20 +1,18 @@
 package galeria.usuarios;
 
 public abstract class Empleado {
-    
     protected String idEmpleado;
     protected String nombre;
+    protected String username;
+    protected String passwordHash;
+    protected String role;  
 
-    
-    protected String username; 
-    protected String passwordHash; 
-
-    
-    public Empleado(String idEmpleado, String nombre, String username, String passwordHash) {
+    public Empleado(String idEmpleado, String nombre, String username, String passwordHash, String role) {
         this.idEmpleado = idEmpleado;
         this.nombre = nombre;
         this.username = username;
         this.passwordHash = passwordHash;
+        this.role = role;  
     }
 
    
@@ -52,9 +50,18 @@ public abstract class Empleado {
     public void setPasswordHash(String passwordHash) {
         this.passwordHash = passwordHash;
     }
-    public abstract void realizarAccionesEspecificas();
+public abstract void realizarAccionesEspecificas();
     
     public void realizarTareaGeneral() {
         System.out.println(this.nombre + " está realizando una tarea general.");
+    }
+
+  
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
     }
 }

@@ -3,6 +3,8 @@ package galeria.usuarios;
 import galeria.pieza.Pieza;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 public class CompradorPropietario {
     private String idUsuario;
@@ -10,10 +12,11 @@ public class CompradorPropietario {
     private String username;
     private String informacionContacto;
     private List<Pieza> piezas;
+    private Set<Pieza> piezasFavoritas; 
     private double limiteCompra;
     private boolean estaVerificado;
 
-    // Constructor
+ 
     public CompradorPropietario(String idUsuario, String nombre, String username, String informacionContacto, double limiteCompra, boolean estaVerificado) {
         this.idUsuario = idUsuario;
         this.nombre = nombre;
@@ -22,9 +25,10 @@ public class CompradorPropietario {
         this.limiteCompra = limiteCompra;
         this.estaVerificado = estaVerificado;
         this.piezas = new ArrayList<>();
+        this.piezasFavoritas = new HashSet<>(); 
     }
 
-    // Getters
+
     public String getIdUsuario() {
         return idUsuario;
     }
@@ -53,7 +57,7 @@ public class CompradorPropietario {
         return new ArrayList<>(piezas);
     }
 
-    // Setters
+
     public void setIdUsuario(String idUsuario) {
         this.idUsuario = idUsuario;
     }
@@ -78,7 +82,7 @@ public class CompradorPropietario {
         this.estaVerificado = estaVerificado;
     }
 
- // Método para añadir una pieza, verificando primero la verificación del comprador y el límite de compra
+
     public void addPieza(Pieza pieza) {
         if (!estaVerificado) {
             System.out.println("Operación denegada: El usuario no está verificado.");
@@ -92,13 +96,42 @@ public class CompradorPropietario {
         System.out.println("Pieza añadida: " + pieza.getTitulo());
     }
 
-    // Método para mostrar todas las piezas
+    public void removePieza(Pieza pieza) {
+        if (piezas.remove(pieza)) {
+            System.out.println("Pieza removida: " + pieza.getTitulo());
+        } else {
+            System.out.println("Pieza no encontrada en la colección.");
+        }
+    }
+
+    public void toggleFavorite(Pieza pieza) {
+        if (piezasFavoritas.contains(pieza)) {
+            piezasFavoritas.remove(pieza);
+            System.out.println("Pieza removida de favoritos: " + pieza.getTitulo());
+        } else {
+            piezasFavoritas.add(pieza);
+            System.out.println("Pieza añadida a favoritos: " + pieza.getTitulo());
+        }
+    }
+
+
     public void mostrarPiezas() {
         if (piezas.isEmpty()) {
             System.out.println("No tienes ninguna pieza.");
         } else {
             System.out.println("Listado de piezas:");
             for (Pieza pieza : piezas) {
+                System.out.println(pieza.getTitulo() + " - " + pieza.getDescripcion());
+            }
+        }
+    }
+
+    public void mostrarFavoritos() {
+        if (piezasFavoritas.isEmpty()) {
+            System.out.println("No tienes piezas favoritas.");
+        } else {
+            System.out.println("Piezas favoritas:");
+            for (Pieza pieza : piezasFavoritas) {
                 System.out.println(pieza.getTitulo() + " - " + pieza.getDescripcion());
             }
         }
