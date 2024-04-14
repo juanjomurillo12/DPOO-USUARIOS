@@ -1,7 +1,10 @@
 package galeria.pieza;
+
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+
+import galeria.usuarios.Propietario;  
 
 /**
  * Clase que representa una pieza de arte en la galería.
@@ -13,29 +16,36 @@ public class Pieza {
     private String lugarCreacion;
     private String estadoPieza;
     private boolean estaExhibida;
-    private boolean disponibilidadVenta;
-    private List<String> autor;
+    private boolean disponibleVenta;  
+    private int valorMinimo;
+    private int valorInicial;
     private double valorFijo;
     private Date fechaDeIngreso;
     private boolean esVigente;
     private String descripcion;
+    private Propietario propietario;  
+    private List<String> autor;
+
 
     public Pieza(String idPieza, String titulo, int anioCreacion, String lugarCreacion, 
-                 String estadoPieza, boolean estaExhibida, boolean disponibilidadVenta, 
-                 List<String> autor, double valorFijo, Date fechaDeIngreso, 
-                 boolean esVigente, String descripcion) {
+                 String estadoPieza, boolean estaExhibida, boolean disponibleVenta, 
+                 List<String> autor, double valorFijo, int valorMinimo, int valorInicial,
+                 Date fechaDeIngreso, boolean esVigente, String descripcion, Propietario propietario) {
         this.idPieza = idPieza;
         this.titulo = titulo;
         this.anioCreacion = anioCreacion;
         this.lugarCreacion = lugarCreacion;
         this.estadoPieza = estadoPieza;
         this.estaExhibida = estaExhibida;
-        this.disponibilidadVenta = disponibilidadVenta;
+        this.disponibleVenta = disponibleVenta;
         this.autor = autor;
         this.valorFijo = valorFijo;
+        this.valorMinimo = valorMinimo;
+        this.valorInicial = valorInicial;
         this.fechaDeIngreso = fechaDeIngreso;
         this.esVigente = esVigente;
         this.descripcion = descripcion;
+        this.propietario = propietario;
     }
 
   
@@ -63,8 +73,8 @@ public class Pieza {
         return estaExhibida;
     }
 
-    public boolean isDisponibilidadVenta() {
-        return disponibilidadVenta;
+    public boolean isDisponibleVenta() {
+        return disponibleVenta;
     }
 
     public List<String> getAutor() {
@@ -73,6 +83,14 @@ public class Pieza {
 
     public double getValorFijo() {
         return valorFijo;
+    }
+
+    public int getValorMinimo() {
+        return valorMinimo;
+    }
+
+    public int getValorInicial() {
+        return valorInicial;
     }
 
     public Date getFechaDeIngreso() {
@@ -86,6 +104,11 @@ public class Pieza {
     public String getDescripcion() {
         return descripcion;
     }
+
+    public Propietario getPropietario() {
+        return propietario;
+    }
+
 
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;

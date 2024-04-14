@@ -2,30 +2,45 @@ package galeria.usuarios;
 
 import galeria.pieza.Pieza;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 public class CompradorPropietario {
-    private String idUsuario;
-    private String nombre;
-    private String username;
-    private String informacionContacto;
-    private List<Pieza> piezas;
-    private Set<Pieza> piezasFavoritas; 
-    private double limiteCompra;
-    private boolean estaVerificado;
+    protected String idUsuario;
+    protected String nombre;
+    protected String username;
+    protected String informacionContacto;
+    protected List<Pieza> piezas;
+    protected Set<Pieza> piezasFavoritas;
+    protected double limiteCompra;
+    protected boolean estaVerificado;
 
- 
-    public CompradorPropietario(String idUsuario, String nombre, String username, String informacionContacto, double limiteCompra, boolean estaVerificado) {
+    
+    public CompradorPropietario(String idUsuario, String nombre, String username,
+                                String informacionContacto, double limiteCompra,
+                                boolean estaVerificado, List<Pieza> piezas, Set<Pieza> piezasFavoritas) {
         this.idUsuario = idUsuario;
         this.nombre = nombre;
         this.username = username;
         this.informacionContacto = informacionContacto;
         this.limiteCompra = limiteCompra;
         this.estaVerificado = estaVerificado;
-        this.piezas = new ArrayList<>();
-        this.piezasFavoritas = new HashSet<>(); 
+        this.piezas = piezas != null ? new ArrayList<>(piezas) : new ArrayList<>();
+        this.piezasFavoritas = piezasFavoritas != null ? new HashSet<>(piezasFavoritas) : new HashSet<>();
+    }
+
+
+    public CompradorPropietario(String idUsuario, String nombre, String username,
+                                String informacionContacto, double limiteCompra,
+                                boolean estaVerificado) {
+        this(idUsuario, nombre, username, informacionContacto, limiteCompra,
+             estaVerificado, null, null);
+    }
+
+
+    public CompradorPropietario(String idUsuario) {
+        this(idUsuario, "Default Name", "Default Username", "Default Contact", 0.0, false, new ArrayList<>(), new HashSet<>());
     }
 
 
