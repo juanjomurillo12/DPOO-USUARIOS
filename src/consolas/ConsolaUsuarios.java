@@ -65,7 +65,7 @@ public class ConsolaUsuarios {
         String titulo = "La Gioconda";
         int anioCreacion = 1503;
         String lugarCreacion = "Italia";
-        String estadoPieza = "Bueno";
+        String estadoPieza = "Bodega";
         boolean estaExhibida = true;
         boolean disponibleVenta = true;
         List<String> autor = Arrays.asList("Leonardo da Vinci");
